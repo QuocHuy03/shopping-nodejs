@@ -1,0 +1,487 @@
+<%- include('lib/header.ejs') %> <%- include('lib/sidebar.ejs') %>
+<div class="app-main">
+  <%- include('lib/navbar.ejs',{user: user}) %>
+  <div class="main-body" style="padding: 56px 0px;">
+    <div class="container">
+      <div class="main-grid row">
+        <div class="main-header col-md-9 pull-md-right">
+          <div class="header-lined">
+            <h1>My Dashboard</h1>
+            <div class="d-flex space-between align-center">
+              <ol class="breadcrumb">
+                <li>
+                  <a href="/home"> Trang chủ </a>
+                </li>
+                <li class="active">Trang khách hàng</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <div class="main-sidebar sidebar-primary col-md-3 pull-md-left sidebar">
+          <div
+            menuitemname="Client Details"
+            class="panel panel-sidebar panel-client-details"
+          >
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                 Thông tin tài khoản
+                <i
+                  class="fa fa-chevron-up panel-minimise pull-right minimised"
+                ></i>
+              </h3>
+            </div>
+            <div class="panel-body" style="display: none">
+              <strong><%= huyit.username %></strong><br /><em><%= huyit.email %></em><br /><%= huyit.address %><br /><%= huyit.mobile %><br />Viet
+              Nam
+            </div>
+            <div class="panel-footer clearfix">
+              <a
+                href="/profile"
+                class="btn btn-success btn-sm btn-block"
+              >
+                Cập nhật
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="main-content col-md-9 pull-md-right">
+          <div class="tiles clearfix swiper-container">
+            <div class="row swiper-wrapper">
+              <div
+                class="col-sm-3 swiper-slide"
+                onclick="window.location='clientarea.php?action=services'"
+              >
+                <a class="tile" href="clientarea.php?action=services">
+                  <div class="icon"><i class="fa-solid fa-paperclip"></i></div>
+                  <div class="stat">0</div>
+                  <div class="title">Dịch vụ</div>
+                </a>
+              </div>
+              <div
+                class="col-sm-3 swiper-slide"
+                onclick="window.location='clientarea.php?action=quotes'"
+              >
+                <a class="tile" href="clientarea.php?action=quotes">
+                  <div class="icon"><i class="fa-solid fa-file"></i></div>
+                  <div class="stat">0</div>
+                  <div class="title">Báo giá</div>
+                </a>
+              </div>
+              <div
+                class="col-sm-3 swiper-slide"
+                onclick="window.location='clientarea.php?action=invoices'"
+              >
+                <a class="tile" href="clientarea.php?action=invoices">
+                  <div class="icon"><i class="fa-solid fa-file"></i></div>
+                  <div class="stat">0</div>
+                  <div class="title">Hóa đơn chưa thanh toán</div>
+                </a>
+              </div>
+              <div
+                class="col-sm-3 swiper-slide"
+                onclick="window.location='supporttickets.php'"
+              >
+                <a class="tile" href="supporttickets.php">
+                  <div class="icon"><i class="fa-solid fa-tag"></i></div>
+                  <div class="stat">0</div>
+                  <div class="title">Yêu cầu hỗ trợ</div>
+                </a>
+              </div>
+            </div>
+            <div class="swiper-pagination swiper-pagination-clickable">
+              <span
+                class="swiper-pagination-bullet"
+                tabindex="0"
+                role="button"
+                aria-label="Go to slide 1"
+              ></span
+              ><span
+                class="swiper-pagination-bullet"
+                tabindex="0"
+                role="button"
+                aria-label="Go to slide 2"
+              ></span>
+            </div>
+          </div>
+          <div
+            class="client-home-panels row"
+            data-panels-grid=""
+            style="position: relative; height: 578px"
+          >
+            <div
+              class="col-sm-6 col-xs-12"
+              data-panels-grid-item=""
+              style="position: absolute; left: 0px; top: 0px"
+            >
+              <div
+                menuitemname="Active Products/Services"
+                class="panel panel-default panel-accent- panel-active-services"
+              >
+                <div class="panel-heading">
+                  <h3 class="panel-title">
+                    <i class="fa-solid fa-cloud"></i>
+                    Quản lý dịch vụ
+                  </h3>
+                </div>
+
+                <div class="panel-body">
+                  <div class="no-data">
+                    <div class="no-data-icon">
+                      <svg
+                        class="svg-icon"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        x="0px"
+                        y="0px"
+                        width="64px"
+                        height="64px"
+                        viewBox="0 0 64 64"
+                        style="enable-background: new 0 0 64 64"
+                        xml:space="preserve"
+                      >
+                        <polyline
+                          class="outline stroke"
+                          points="35.5,3 32,1 28.5,3"
+                        ></polyline>
+                        <line
+                          class="outline stroke"
+                          x1="48.4"
+                          y1="10.4"
+                          x2="42.6"
+                          y2="7.1"
+                        ></line>
+                        <polyline
+                          class="outline stroke"
+                          points="59,20.6 59,16.6 55.5,14.6"
+                        ></polyline>
+                        <line
+                          class="outline stroke"
+                          x1="59"
+                          y1="35.3"
+                          x2="59"
+                          y2="28.7"
+                        ></line>
+                        <polyline
+                          class="outline stroke"
+                          points="55.5,49.4 59,47.4 59,43.4"
+                        ></polyline>
+                        <line
+                          class="outline stroke"
+                          x1="42.6"
+                          y1="56.9"
+                          x2="48.4"
+                          y2="53.6"
+                        ></line>
+                        <polyline
+                          class="outline stroke"
+                          points="28.5,61 32,63 35.5,61"
+                        ></polyline>
+                        <line
+                          class="outline stroke"
+                          x1="15.6"
+                          y1="53.6"
+                          x2="21.4"
+                          y2="56.9"
+                        ></line>
+                        <polyline
+                          class="outline stroke"
+                          points="5,43.4 5,47.4 8.5,49.4"
+                        ></polyline>
+                        <line
+                          class="outline stroke"
+                          x1="5"
+                          y1="28.7"
+                          x2="5"
+                          y2="35.3"
+                        ></line>
+                        <polyline
+                          class="outline stroke"
+                          points="8.5,14.6 5,16.6 5,20.6"
+                        ></polyline>
+                        <line
+                          class="outline stroke"
+                          x1="21.4"
+                          y1="7.1"
+                          x2="15.6"
+                          y2="10.5"
+                        ></line>
+                        <polygon
+                          class="prime stroke"
+                          points="19,25 19,39.3 32,46.8 45,39.3 45,25"
+                        ></polygon>
+                        <polygon
+                          class="prime-l stroke"
+                          points="32,32.2 19,24.7 32,17.2 45,24.7"
+                        ></polygon>
+                      </svg>
+                    </div>
+                    <div class="text-light">No Active Services Found</div>
+                    <a href="cart.php">Đăng ký dịch vụ</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="col-sm-6 col-xs-12"
+              data-panels-grid-item=""
+              style="position: absolute; left: 356.75px; top: 0px"
+            >
+              <div
+                menuitemname="Recent Support Tickets"
+                class="panel panel-default panel-accent- panel-support-tickets"
+              >
+                <div class="panel-heading">
+                  <h3 class="panel-title">
+                    <i class="fa-solid fa-tag"></i>
+                    Ticket mới gửi
+                  </h3>
+                </div>
+
+                <div class="panel-body">
+                  <div class="no-data">
+                    <div class="no-data-icon">
+                      <svg
+                        class="svg-icon"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        x="0px"
+                        y="0px"
+                        width="64px"
+                        height="64px"
+                        viewBox="0 0 64 64"
+                        style="enable-background: new 0 0 64 64"
+                        xml:space="preserve"
+                      >
+                        <line
+                          class="outline stroke"
+                          x1="59"
+                          y1="20.6"
+                          x2="59"
+                          y2="16.6"
+                        ></line>
+                        <line
+                          class="outline stroke"
+                          x1="59"
+                          y1="35.3"
+                          x2="59"
+                          y2="28.7"
+                        ></line>
+                        <polyline
+                          class="outline stroke"
+                          points="55.5,49.4 59,47.4 59,43.4"
+                        ></polyline>
+                        <line
+                          class="outline stroke"
+                          x1="42.6"
+                          y1="56.9"
+                          x2="48.4"
+                          y2="53.5"
+                        ></line>
+                        <polyline
+                          class="outline stroke"
+                          points="28.5,61 32,63 35.5,61"
+                        ></polyline>
+                        <line
+                          class="outline stroke"
+                          x1="15.6"
+                          y1="53.6"
+                          x2="21.4"
+                          y2="56.9"
+                        ></line>
+                        <polyline
+                          class="outline stroke"
+                          points="5,43.4 5,47.4 8.5,49.4"
+                        ></polyline>
+                        <line
+                          class="outline stroke"
+                          x1="5"
+                          y1="28.7"
+                          x2="5"
+                          y2="35.3"
+                        ></line>
+                        <line
+                          class="outline stroke"
+                          x1="5"
+                          y1="16.6"
+                          x2="5"
+                          y2="20.6"
+                        ></line>
+                        <polygon
+                          class="prime stroke"
+                          points="32,37 27.5,34.4 19,39.3 32,46.8 45,39.3 36.5,34.4"
+                        ></polygon>
+                        <polygon
+                          class="prime-l stroke"
+                          points="32,32.8 24.8,28.6 19,32 32,39.5 45,32 39.2,28.6"
+                        ></polygon>
+                        <polygon
+                          class="outline stroke"
+                          points="32,32.2 5,16.6 32,1 59,16.6"
+                        ></polygon>
+                        <polyline
+                          class="outline stroke"
+                          points="26,4.7 26,20 52.8,20"
+                        ></polyline>
+                        <line
+                          class="outline stroke"
+                          x1="25"
+                          y1="13"
+                          x2="11.5"
+                          y2="13"
+                        ></line>
+                        <line
+                          class="outline stroke"
+                          x1="38"
+                          y1="21"
+                          x2="38"
+                          y2="28.5"
+                        ></line>
+                      </svg>
+                    </div>
+                    <div class="text-light">No Recent Tickets Found</div>
+                    <a href="submitticket.php">Mở yêu cầu hỗ trợ</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="col-sm-6 col-xs-12"
+              data-panels-grid-item=""
+              style="position: absolute; left: 0px; top: 301px"
+            >
+              <div
+                menuitemname="Recent News"
+                class="panel panel-default panel-accent-"
+              >
+                <div class="panel-heading">
+                  <h3 class="panel-title">
+                    <i class="fab fa-facebook-messenger"></i>
+                    Thông báo mới
+                  </h3>
+                </div>
+
+                <div class="panel-body">
+                  <div class="no-data">
+                    <div class="no-data-icon">
+                      <svg
+                        class="svg-icon"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        x="0px"
+                        y="0px"
+                        width="64px"
+                        height="64px"
+                        viewBox="0 0 64 64"
+                        style="enable-background: new 0 0 64 64"
+                        xml:space="preserve"
+                      >
+                        <path
+                          class="outline stroke"
+                          d="M42.5,50.4L47,53V37.7c0-0.7,0.2-1.6,0.7-2.5c0.5-0.8,1.1-1.5,1.8-1.9c0.6-0.4,1.3-0.5,1.8-0.2S52,34,52,34.7
+V44v9.7c0,1.5-0.5,3.2-1.5,4.9s-2.3,3-3.5,3.7c-1.3,0.7-2.6,0.9-3.5,0.4c-1-0.6-1.5-1.8-1.5-3.2V18.3L12,1v41.2
+c0,1.5,0.5,2.7,1.5,3.2l30,17.3"
+                        ></path>
+                        <line
+                          class="outline stroke"
+                          x1="51.3"
+                          y1="33.1"
+                          x2="42.5"
+                          y2="28"
+                        ></line>
+                        <polygon
+                          class="prime stroke"
+                          points="37,29.5 17,18 17,9.9 37,21.4"
+                        ></polygon>
+                        <line
+                          class="prime stroke"
+                          x1="37"
+                          y1="35.5"
+                          x2="17"
+                          y2="24"
+                        ></line>
+                        <line
+                          class="prime stroke"
+                          x1="31"
+                          y1="38.1"
+                          x2="17"
+                          y2="30"
+                        ></line>
+                      </svg>
+                    </div>
+                    <div class="text-light">No Recent News Found</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="main-sidebar sidebar-secondary col-md-3 pull-md-left sidebar"
+        >
+          <div
+            menuitemname="Client Contacts"
+            class="panel panel-sidebar panel-client-contacts"
+          >
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                 Thông tin liên hệ
+                <i
+                  class="fa fa-chevron-up panel-minimise pull-right minimised"
+                ></i>
+              </h3>
+            </div>
+        
+            <div class="panel-footer clearfix">
+              <a
+                href="clientarea.php?action=addcontact"
+                class="btn btn-default btn-sm btn-block"
+              >
+                 Thêm thông tin mới ...
+              </a>
+            </div>
+          </div>
+          <div
+            menuitemname="Client Shortcuts"
+            class="panel panel-sidebar panel-sidebar"
+          >
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                Liên kết nhanh
+                <i
+                  class="fa fa-chevron-up panel-minimise pull-right minimised"
+                ></i>
+              </h3>
+            </div>
+            <div class="list-group" style="display: none">
+              <a
+                menuitemname="Order New Services"
+                href="/checkout"
+                class="list-group-item"
+                id="Secondary_Sidebar-Client_Shortcuts-Order_New_Services"
+              >
+               
+                Đăng ký dịch vụ
+              </a>
+              <a
+                menuitemname="Logout"
+                href="/logout"
+                class="list-group-item"
+                id="Secondary_Sidebar-Client_Shortcuts-Logout"
+              >
+             
+                Đăng xuất
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+
+  <%- include('lib/footer.ejs') %>
+

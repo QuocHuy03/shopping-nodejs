@@ -1,0 +1,154 @@
+
+<%- include('lib/header.ejs') %> <%- include('lib/sidebar.ejs') %>
+<div class="app-main">
+    <%- include('lib/navbar.ejs',{user: user}) %>
+  <div class="main-body" style="padding: 56px 0px;">
+    <div class="container">
+      <div class="main-grid row">
+        <div class="main-header col-md-9 pull-md-right">
+          <div class="header-lined">
+            <h1>License Source Code</h1>
+          </div>
+        </div>
+        <div
+          class="col-md-3 pull-md-left main-sidebar sidebar hidden-xs hidden-sm"
+        >
+          <div menuItemName="Categories" class="panel panel-sidebar">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                <i class="fas fa-shopping-cart"></i> Danh sách dịch vụ
+
+                <i class="fa fa-chevron-up panel-minimise pull-right"></i>
+              </h3>
+            </div>
+
+            <div class="list-group">
+              <a
+                menuItemName="Hosting Singapore"
+                href="/store/shared-hosting"
+                class="list-group-item"
+                id="Secondary_Sidebar-Categories-Hosting_Singapore"
+              >
+              <i class="fa-solid fa-cloud" style="margin-right: 8px;"></i>
+
+                Hosting Singapore
+              </a>
+              <a
+                menuItemName="License Source Code"
+                href="/store/license-source-code"
+                class="list-group-item active"
+                id="Secondary_Sidebar-Categories-License_Source_Code"
+              >
+              <i class="fa-solid fa-box" style="margin-right: 8px;"></i>
+
+                License Source Code
+              </a>
+            </div>
+          </div>
+
+          <div menuItemName="Actions" class="panel panel-sidebar">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                <i class="fas fa-plus"></i> Hành động
+
+                <i class="fa fa-chevron-up panel-minimise pull-right"></i>
+              </h3>
+            </div>
+
+            <div class="list-group">
+              <a
+                menuItemName="View Cart"
+                href="/cart.php?a=view"
+                class="list-group-item"
+                id="Secondary_Sidebar-Actions-View_Cart"
+              >
+              <i class="fa-solid fa-cart-shopping" style="margin-right: 8px;"></i> Giỏ hàng
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="main-content col-md-9 pull-md-right">
+          <div class="categories-collapsed visible-xs visible-sm clearfix">
+            <div class="pull-left form-inline">
+              <div class="dropdown">
+                <a href="#" data-toggle="dropdown" class="btn btn-default">
+                  License Source Code
+
+                  <i class="ls ls-caret"></i>
+                </a>
+                <ul class="dropdown-menu ps">
+                  <li class="dropdown-title h6">Danh sách dịch vụ</li>
+                  <li>
+                    <a
+                      menuItemName="Hosting Singapore"
+                      href="/store/shared-hosting"
+                      class=""
+                      id="Secondary_Sidebar-Categories-Hosting_Singapore"
+                    >
+                      Hosting Singapore
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      menuItemName="License Source Code"
+                      href="/store/license-source-code"
+                      class="active"
+                      id="Secondary_Sidebar-Categories-License_Source_Code"
+                    >
+                      License Source Code
+                    </a>
+                  </li>
+                  <li class="dropdown-title h6">Hành động</li>
+                  <li>
+                    <a
+                      menuItemName="View Cart"
+                      href="/cart.php?a=view"
+                      class=""
+                      id="Secondary_Sidebar-Actions-View_Cart"
+                    >
+                      Giỏ hàng
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="products" id="products">
+            <div class="row row-eq-height row-eq-height-sm">
+            <!-- product -->
+            <% for(var i=0; i < dataProducts.length; i++) { %>
+              <div class="col-lg-4 col-sm-6">
+                <div class="package package-featured" id="product1">
+                  <span class="label-corner label-primary">Featured</span>
+                  <h3 class="package-name"><%= dataProducts[i].name_product %></h3>
+                  <div class="package-price">
+                    <div class="price"><%= dataProducts[i].price_product %>đ</div>
+                  </div>
+                  <div class="package-content">
+                    <p>
+                        <%= dataProducts[i].desc_product %><br />
+                    </p>
+                  </div>
+                  <div class="package-footer">
+                    <a
+                      href="/addToCart/<%= dataProducts[i].id_product %>"
+                      class="btn btn-lg btn-primary"
+                      id="product1-order-button"
+                    >
+                      Đăng ký ngay
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <% } %>
+              <!-- end product -->
+            </div>
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+
+  <%- include('lib/footer.ejs') %>

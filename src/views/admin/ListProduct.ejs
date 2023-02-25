@@ -1,0 +1,86 @@
+<%- include('_layout/header.ejs') %>
+<%- include('_layout/nav.ejs') %>
+
+<div class="row mb-2">
+    <div class="col-sm-6">
+    </div><!-- /.col -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">NHÓM SẢN PHẨM</h3>
+               
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="datatable1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr class="text-center">
+                                <th style="width:10px">STT</th>
+                                <th>Hình Ảnh</th>
+                                <th>Tên Sản Phẩm</th>
+                                <th>Giá Sản Phẩm</th>
+                                <th>Mô Tả Sản Phẩm</th>
+                                <th>Danh Mục Sản Phẩm</th>
+                                <th>Sửa</th>
+                                <th>Xóa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i=0; i < dataProduct.length; i++) { %>
+                                <tr>
+                                    <td class="text-center">
+                                     <%= dataProduct[i].id_product %>
+                                    </td>
+                                    <td class="text-center">
+                                        <img style="width:200px" src="<%= dataProduct[i].img_product %>">
+                                    </td>
+                                    <td class="text-center">
+                                        <%= dataProduct[i].name_product %>
+                                    </td>
+                                    <td class="text-center">
+                                        <%= dataProduct[i].price_product %>
+                                    </td>
+                                     <td class="text-center">
+                                        <%= dataProduct[i].name_cate %>
+                                    </td>
+                                    <td class="text-center">
+                                        <%= dataProduct[i].desc_product %>
+                                    </td>
+                                    
+                                    <td class="text-center">
+                                        <form action="/admin/edit-product/<%= dataProduct[i].id_product %>" method="get">
+                                            <button class="btn btn-info" type="submit" style="color: #fff">
+                                              Edit
+                                            </button>
+                                          </form>
+                                    </td>
+                                    <td class="text-center">
+                                        <form action="/delete-product" method="post">
+                                            <input type="hidden" value="<%= dataProduct[i].id_product %>" name="id" />
+                                            <button class="btn btn-success" type="submit" style="color: #fff">
+                                              Delete
+                                            </button>
+                                          </form>
+                                    </td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer clearfix">
+                VUI LÒNG THAO TÁC CẨN THẬN
+            </div>
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+</div>
+<!-- /.row huydeV -->
+
+<%- include('_layout/footer.ejs') %>

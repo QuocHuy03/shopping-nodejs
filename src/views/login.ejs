@@ -1,0 +1,262 @@
+<%- include('lib/header.ejs') %> 
+<%- include('lib/sidebar.ejs') %>
+
+<div class="app-main">
+  <%- include('lib/navbar.ejs') %>
+  <div class="main-body login-page" style="padding: 56px 0px">
+    <div class="container">
+      <div class="main-grid row">
+        <div class="main-content col-sm-12">
+          <div class="header-lined text-center m-b-24">
+            <h1>Đăng nhập</h1>
+          </div>
+          <div class="logincontainer">
+            <div class="logincontainer-body">
+              <form
+                method="post"
+                action="/login-user"
+                class="login-form"
+                role="form"
+              >
+                <div class="form-group">
+                  <label for="inputEmail">Tên Đăng Nhập</label>
+                  <input
+                    type="text"
+                    name="username"
+                    class="form-control input-lg"
+                    id="inputEmail"
+                    placeholder="Nhập Tên Đăng Nhập"
+                    autofocus
+                    tabindex="1"
+                  />
+                </div>
+                <div class="form-group">
+                  <div class="d-flex space-between">
+                    <label for="inputPassword">Mật khẩu</label>
+                    <a href="/password/reset" tabindex="5">Forgot?</a>
+                  </div>
+                  <input
+                    type="password"
+                    name="password"
+                    class="form-control input-lg"
+                    id="inputPassword"
+                    placeholder="Mật khẩu"
+                    autocomplete="off"
+                    tabindex="2"
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="checkbox m-b-16" tabindex="3">
+                    <input
+                      class="icheck-control"
+                      type="checkbox"
+                      name="rememberme"
+                    />
+                    Lưu thông tin
+                  </label>
+                </div>
+                <input
+                  id="login"
+                  type="submit"
+                  class="btn btn-lg btn-primary btn-block"
+                  value="Đăng nhập"
+                  tabindex="4"
+                />
+              </form>
+            </div>
+            <div
+              class="text-lighter text-center text-small text-divider text-social"
+            >
+              <span>or</span>
+            </div>
+            <div class="providerLinkingFeedback"></div>
+
+            <div id="providerLinkingMessages" class="hidden">
+              <p class="providerLinkingMsg-preLink-init_failed">
+                <span class="provider-name"></span> is unavailable at this time.
+                Please try again later.
+              </p>
+              <p class="providerLinkingMsg-preLink-connect_error">
+                <strong>Error</strong> We were unable to connect your account.
+                Please contact your system administrator.
+              </p>
+              <p class="providerLinkingMsg-preLink-complete_sign_in">
+                Please complete sign in with your chosen service provider.
+              </p>
+              <p class="providerLinkingMsg-preLink-2fa_needed">
+                Automatic sign-in successful! Redirecting...
+              </p>
+              <p class="providerLinkingMsg-preLink-linking_complete">
+                <strong>Success!</strong> Your account is now linked with your
+                :displayName account.
+              </p>
+              <p
+                class="providerLinkingMsg-preLink-login_to_link-signin-required"
+              >
+                <strong>Link Initiated!</strong> Please complete sign in to
+                associate this service with your existing account. You will only
+                have to do this once.
+              </p>
+              <p
+                class="providerLinkingMsg-preLink-login_to_link-registration-required"
+              >
+                <strong>Link Initiated!</strong> Please complete the
+                registration form below.
+              </p>
+              <p class="providerLinkingMsg-preLink-checkout-new">
+                <strong>Link Initiated!</strong> Please complete your new
+                account information.
+              </p>
+              <p class="providerLinkingMsg-preLink-other_user_exists">
+                <strong>Error</strong> This account is already connected to an
+                existing account with us. Please choose a different account at
+                the third party authentication provider.
+              </p>
+              <p class="providerLinkingMsg-preLink-already_linked">
+                <strong>Error</strong> This account is already connected to your
+                account with us. Please choose a different account at the third
+                party authentication provider.
+              </p>
+              <p class="providerLinkingMsg-preLink-default">
+                <strong>Error</strong> We were unable to connect your account.
+                Please contact your system administrator.
+              </p>
+            </div>
+
+            <div
+              class="providerPreLinking"
+              data-link-context="login"
+              data-hide-on-prelink="0"
+              data-disable-on-prelink="0"
+            >
+              <div class="social-signin-btns">
+                <script>
+                  window.onerror = function (e) {
+                    WHMCS.authn.provider.displayError();
+                  };
+
+                  var googleUser = {};
+                  var startGoogleApp = function () {
+                    gapi.load("auth2", function () {
+                      gapi.auth2
+                        .init({
+                          client_id:
+                            "87737244092-32k454kef9dk2bdigak5ji01h5quu8ci.apps.googleusercontent.com",
+                          cookiepolicy: "https://client.cmsnt.co",
+                        })
+                        .then(
+                          function (response) {
+                            jQuery(".btn-google").each(function (i, el) {
+                              response.attachClickHandler(
+                                el,
+                                {},
+                                function (googleUser) {
+                                  onSignIn(googleUser);
+                                }
+                              );
+                            });
+                          },
+                          function (reason) {
+                            if (
+                              reason.error == "idpiframe_initialization_failed"
+                            ) {
+                              jQuery(".btn-google").click(function (e) {
+                                WHMCS.authn.provider.displayError(
+                                  "Google Sign-In",
+                                  "init_failed",
+                                  reason.details
+                                );
+                              });
+                            } else {
+                              jQuery(".btn-google").click(function (e) {
+                                WHMCS.authn.provider.displayError(
+                                  "Google Sign-In"
+                                );
+                              });
+                            }
+                          }
+                        );
+                    });
+                  };
+
+                  function onSignIn(googleUser) {
+                    WHMCS.authn.provider.preLinkInit();
+
+                    var failIfExists = 0;
+                    if ("login" === "register" || "login" === "connect") {
+                      failIfExists = 1;
+                    }
+
+                    var context = {
+                      htmlTarget: "login",
+                      targetLogin: "login",
+                      targetRegister: "register",
+                      redirectUrl: "%2Fclientarea.php",
+                    };
+                    var config = {
+                      url: "/auth/provider/google_signin/finalize",
+                      method: "POST",
+                      dataType: "json",
+                      data: {
+                        id_token: googleUser.getAuthResponse().id_token,
+                        fail_if_exists: failIfExists,
+                        token: "ae6871f8963273c580d69d9cdb5ae51e9274d198",
+                        cartCheckout: 0,
+                      },
+                    };
+                    var provider = {
+                      name: "Google",
+                      icon: '<img src="/assets/img/auth/google_icon.png" width="17px" height="17px" alt="googleIcon" /> ',
+                    };
+
+                    var providerDone = function () {
+                      gapi.auth2.getAuthInstance().signOut();
+                    };
+                    var providerError = function () {
+                      gapi.auth2.getAuthInstance().signOut();
+                    };
+
+                    WHMCS.authn.provider.signIn(
+                      config,
+                      context,
+                      provider,
+                      providerDone,
+                      providerError
+                    );
+                  }
+                </script>
+                <script
+                  src="https://apis.google.com/js/platform.js?onload=startGoogleApp"
+                  async
+                  defer
+                ></script>
+                <button
+                  id="btnGoogleSignin1"
+                  class="btn btn-social btn-google"
+                  type="button"
+                >
+                  <img
+                    src="/assets/img/auth/google_icon.png"
+                    width="17px"
+                    height="17px"
+                    alt="googleIcon"
+                  />
+                  Sign in with Google
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="logincontainer-footer m-t-24">
+            <div class="text-light">
+              Not a member yet?
+              <a href="/register.php" tabindex="6">Tạo tài khoản mới</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+
+<%- include('lib/footer.ejs') %>

@@ -1,0 +1,430 @@
+<div class="main-top">
+  <div class="container">
+    <ul class="top-nav">
+      <li>
+        <a href="/checkout">
+          <i class="fas fa-shopping-basket"></i>
+        </a>
+      </li>
+
+      <li
+        menuItemName="Account"
+        class="dropdown account"
+        id="Secondary_Navbar-Account"
+      >
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          <i class="fas fa-user"></i>
+          <span class="item-text">Quản lý tài khoản</span>
+
+          <i class="fas fa-caret-down"></i>
+        </a>
+        <!-- check login chưa  -->
+
+        <% if(typeof user !== 'undefined'){ %>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li class="dropdown-header">
+            <div class="dropdown-header-title"></div>
+            <div class="dropdown-header-desc"></div>
+          </li>
+          <li class="nav-divider">-----</li>
+          <li
+            menuitemname="Edit Account Details"
+            class=" "
+            id="Secondary_Navbar-Account-Edit_Account_Details"
+          >
+            <a href="/clientarea.php"> Thông tin tài khoản </a>
+          </li>
+          <li
+            menuitemname="User Management"
+            class=" "
+            id="Secondary_Navbar-Account-User_Management"
+          >
+            <a href="/account/users"> Quản lý tài khoản </a>
+          </li>
+          <li
+            menuitemname="Contacts"
+            class=" "
+            id="Secondary_Navbar-Account-Contacts"
+          >
+            <a href="/account/contacts"> Liên hệ </a>
+          </li>
+     
+       
+          <li
+            menuitemname="Switch Divider"
+            class="nav-divider"
+            id="Secondary_Navbar-Account-Switch_Divider"
+          >
+            <a href=""> ----- </a>
+          </li>
+          <li
+            menuitemname="Profile"
+            class=" "
+            id="Secondary_Navbar-Account-Profile"
+          >
+            <a href="/user/profile"> Hồ sơ của bạn </a>
+          </li>
+          <li
+            menuitemname="Change Password"
+            class=" "
+            id="Secondary_Navbar-Account-Change_Password"
+          >
+            <a href="/user/password"> Thay đổi mật khẩu </a>
+          </li>
+     
+          <li
+            menuitemname="Divider"
+            class="nav-divider"
+            id="Secondary_Navbar-Account-Divider"
+          >
+            <a href=""> ----- </a>
+          </li>
+          <li
+            menuitemname="Logout"
+            class=" "
+            id="Secondary_Navbar-Account-Logout"
+          >
+            <a href="/logout"> Đăng xuất </a>
+          </li>
+        </ul>
+        <!-- <p>Variable is defined: <%= user %></p> -->
+        <% } else { %>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li
+            menuItemName="Login"
+            class=" "
+            id="Secondary_Navbar-Account-Login"
+          >
+            <a href="/login"> Đăng nhập </a>
+          </li>
+          <li
+            menuItemName="Register"
+            class=" "
+            id="Secondary_Navbar-Account-Register"
+          >
+            <a href="/register"> Đăng ký </a>
+          </li>
+          <li
+            menuItemName="Divider"
+            class="nav-divider"
+            id="Secondary_Navbar-Account-Divider"
+          >
+            <a href=""> ----- </a>
+          </li>
+          <li
+            menuItemName="Forgot Password?"
+            class=" "
+            id="Secondary_Navbar-Account-Forgot_Password?"
+          >
+            <a href="/password/reset"> Quên mật khẩu? </a>
+          </li>
+        </ul>
+        <% } %>
+      </li>
+
+      <li class="dropdown language" data-language-select>
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          Tiếng Việt
+          <i class="fas fa-caret-down"></i>
+        </a>
+        <div
+          class="dropdown-menu dropdown-language-search dropdown-menu-right"
+          id="languageChooserContent"
+        >
+          <input type="hidden" data-language-select-value value="Tiếng Việt" />
+          <input
+            type="hidden"
+            data-language-select-backlink
+            value="/index.php?"
+          />
+          <input type="hidden" data-language-select-lang value="Select" />
+          <div class="dropdown-header input-group align-center">
+            <i class="input-group-icon fas fa-search"></i>
+            <input
+              class="form-control"
+              placeholder="Tìm kiếm..."
+              type="text"
+              data-language-select-search
+            />
+          </div>
+          <div class="nav-divider"></div>
+          <div class="dropdown-menu-items" data-language-select-list>
+            <div
+              class="dropdown-menu-item"
+              data-value="arabic"
+              data-language="العربية"
+            >
+              <a href="/index.php?language=arabic">
+                <span class="language-flag arabic"></span>
+                <span class="language-text">العربية</span>
+              </a>
+            </div>
+            <div
+              class="dropdown-menu-item"
+              data-value="azerbaijani"
+              data-language="Azerbaijani"
+            >
+              <a href="/index.php?language=azerbaijani">
+                <span class="language-flag azerbaijani"></span>
+                <span class="language-text">Azerbaijani</span>
+              </a>
+            </div>
+            <div
+              class="dropdown-menu-item"
+              data-value="catalan"
+              data-language="Català"
+            >
+              <a href="/index.php?language=catalan">
+                <span class="language-flag catalan"></span>
+                <span class="language-text">Català</span>
+              </a>
+            </div>
+            <div
+              class="dropdown-menu-item"
+              data-value="chinese"
+              data-language="中文"
+            >
+              <a href="/index.php?language=chinese">
+                <span class="language-flag chinese"></span>
+                <span class="language-text">中文</span>
+              </a>
+            </div>
+            <div
+              class="dropdown-menu-item"
+              data-value="croatian"
+              data-language="Hrvatski"
+            >
+              <a href="/index.php?language=croatian">
+                <span class="language-flag croatian"></span>
+                <span class="language-text">Hrvatski</span>
+              </a>
+            </div>
+            <div
+              class="dropdown-menu-item"
+              data-value="czech"
+              data-language="Čeština"
+            >
+              <a href="/index.php?language=czech">
+                <span class="language-flag czech"></span>
+                <span class="language-text">Čeština</span>
+              </a>
+            </div>
+            <div
+              class="dropdown-menu-item"
+              data-value="danish"
+              data-language="Dansk"
+            >
+              <a href="/index.php?language=danish">
+                <span class="language-flag danish"></span>
+                <span class="language-text">Dansk</span>
+              </a>
+            </div>
+            <div
+              class="dropdown-menu-item"
+              data-value="dutch"
+              data-language="Nederlands"
+            >
+              <a href="/index.php?language=dutch">
+                <span class="language-flag dutch"></span>
+                <span class="language-text">Nederlands</span>
+              </a>
+            </div>
+            <div
+              class="dropdown-menu-item"
+              data-value="english"
+              data-language="English"
+            >
+              <a href="/index.php?language=english">
+                <span class="language-flag english"></span>
+                <span class="language-text">English</span>
+              </a>
+            </div>
+            <div
+              class="dropdown-menu-item"
+              data-value="estonian"
+              data-language="Estonian"
+            >
+              <a href="/index.php?language=estonian">
+                <span class="language-flag estonian"></span>
+                <span class="language-text">Estonian</span>
+              </a>
+            </div>
+            <div
+              class="dropdown-menu-item"
+              data-value="farsi"
+              data-language="Persian"
+            >
+              <a href="/index.php?language=farsi">
+                <span class="language-flag farsi"></span>
+                <span class="language-text">Persian</span>
+              </a>
+            </div>
+            <div
+              class="dropdown-menu-item"
+              data-value="french"
+              data-language="Français"
+            >
+              <a href="/index.php?language=french">
+                <span class="language-flag french"></span>
+                <span class="language-text">Français</span>
+              </a>
+            </div>
+            <div
+              class="dropdown-menu-item"
+              data-value="german"
+              data-language="Deutsch"
+            >
+              <a href="/index.php?language=german">
+                <span class="language-flag german"></span>
+                <span class="language-text">Deutsch</span>
+              </a>
+            </div>
+            <div
+              class="dropdown-menu-item"
+              data-value="hebrew"
+              data-language="עברית"
+            >
+              <a href="/index.php?language=hebrew">
+                <span class="language-flag hebrew"></span>
+                <span class="language-text">עברית</span>
+              </a>
+            </div>
+            <div
+              class="dropdown-menu-item"
+              data-value="hungarian"
+              data-language="Magyar"
+            >
+              <a href="/index.php?language=hungarian">
+                <span class="language-flag hungarian"></span>
+                <span class="language-text">Magyar</span>
+              </a>
+            </div>
+            <div
+              class="dropdown-menu-item"
+              data-value="italian"
+              data-language="Italiano"
+            >
+              <a href="/index.php?language=italian">
+                <span class="language-flag italian"></span>
+                <span class="language-text">Italiano</span>
+              </a>
+            </div>
+            <div
+              class="dropdown-menu-item"
+              data-value="macedonian"
+              data-language="Macedonian"
+            >
+              <a href="/index.php?language=macedonian">
+                <span class="language-flag macedonian"></span>
+                <span class="language-text">Macedonian</span>
+              </a>
+            </div>
+            <div
+              class="dropdown-menu-item"
+              data-value="norwegian"
+              data-language="Norwegian"
+            >
+              <a href="/index.php?language=norwegian">
+                <span class="language-flag norwegian"></span>
+                <span class="language-text">Norwegian</span>
+              </a>
+            </div>
+            <div
+              class="dropdown-menu-item"
+              data-value="portuguese-br"
+              data-language="Português"
+            >
+              <a href="/index.php?language=portuguese-br">
+                <span class="language-flag portuguese-br"></span>
+                <span class="language-text">Português</span>
+              </a>
+            </div>
+            <div
+              class="dropdown-menu-item"
+              data-value="portuguese-pt"
+              data-language="Português"
+            >
+              <a href="/index.php?language=portuguese-pt">
+                <span class="language-flag portuguese-pt"></span>
+                <span class="language-text">Português</span>
+              </a>
+            </div>
+            <div
+              class="dropdown-menu-item"
+              data-value="romanian"
+              data-language="Română"
+            >
+              <a href="/index.php?language=romanian">
+                <span class="language-flag romanian"></span>
+                <span class="language-text">Română</span>
+              </a>
+            </div>
+            <div
+              class="dropdown-menu-item"
+              data-value="russian"
+              data-language="Русский"
+            >
+              <a href="/index.php?language=russian">
+                <span class="language-flag russian"></span>
+                <span class="language-text">Русский</span>
+              </a>
+            </div>
+            <div
+              class="dropdown-menu-item"
+              data-value="spanish"
+              data-language="Español"
+            >
+              <a href="/index.php?language=spanish">
+                <span class="language-flag spanish"></span>
+                <span class="language-text">Español</span>
+              </a>
+            </div>
+            <div
+              class="dropdown-menu-item"
+              data-value="swedish"
+              data-language="Svenska"
+            >
+              <a href="/index.php?language=swedish">
+                <span class="language-flag swedish"></span>
+                <span class="language-text">Svenska</span>
+              </a>
+            </div>
+            <div
+              class="dropdown-menu-item"
+              data-value="turkish"
+              data-language="Türkçe"
+            >
+              <a href="/index.php?language=turkish">
+                <span class="language-flag turkish"></span>
+                <span class="language-text">Türkçe</span>
+              </a>
+            </div>
+            <div
+              class="dropdown-menu-item"
+              data-value="ukranian"
+              data-language="Українська"
+            >
+              <a href="/index.php?language=ukranian">
+                <span class="language-flag ukranian"></span>
+                <span class="language-text">Українська</span>
+              </a>
+            </div>
+            <div
+              class="dropdown-menu-item active"
+              data-value="vietnamese"
+              data-language="Tiếng Việt"
+            >
+              <a href="/index.php?language=vietnamese">
+                <span class="language-flag vietnamese"></span>
+                <span class="language-text">Tiếng Việt</span>
+              </a>
+            </div>
+          </div>
+          <div class="dropdown-menu-item dropdown-menu-no-data">
+            <span class="text-info text-large"> Không có dữ liệu </span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

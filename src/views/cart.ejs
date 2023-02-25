@@ -1,0 +1,534 @@
+<%- include('lib/header.ejs') %> <%- include('lib/sidebar.ejs') %>
+
+<div class="app-main">
+  <%- include('lib/navbar.ejs',{user:user}) %>
+  <div class="main-body" style="padding: 56px 0px">
+    <div class="container">
+      <div class="main-grid main-grid-order">
+        <div class="main-header">
+          <div class="header-lined">
+            <h1>Xác nhận & Thanh toán</h1>
+          </div>
+        </div>
+        <div class="main-content">
+          <div class="order-content">
+            <div class="section">
+              <form method="post" action="/cart.php?a=view">
+                <div class="panel panel-default panel-cart m-b-0 mob-border-0">
+                  <div class="panel-heading cart-heading">
+                    <div class="row row-sm">
+                      <div class="col-sm-6">Sản phẩm/Tùy chọn</div>
+                      <div class="col-sm-2">Số lượng</div>
+                      <div class="col-sm-3">Giá</div>
+                      <div class="col-sm-2"></div>
+                    </div>
+                  </div>
+                  <% if(addCart) {%> <% addCart.forEach(function(item) { %>
+                  <div class="panel-body cart-item">
+                    <div class="row row-sm" data-input-number="">
+                      <div
+                        class="col-sm-5 prod-name"
+                        data-content="Sản phẩm / Dịch vụ"
+                      >
+                        <div class="cart-item-title">
+                          <h2>
+                            License Source Code - <%-
+                            JSON.stringify(item.item.name_product).replace(/['"]+/g,
+                            '') %>
+                          </h2>
+                        </div>
+                      </div>
+                      <div class="col-sm-2 prod-qty" data-content="Số lượng">
+                        <div class="input-number is-active">
+                          <input type="number" data-input-number-input=""
+                          disabled name="qty[0]" min="1" value="<%-
+                          JSON.stringify(item.quantity).replace(/['"]+/g, '')
+                          %>" />
+                        </div>
+                      </div>
+                      <div
+                        class="col-sm-3 prod-price item-price-changed text-center"
+                        style="align-items: center; display: grid"
+                        data-content="Giá"
+                      >
+                        <span class="cart-item-price"
+                          ><%-
+                          JSON.stringify(item.price_product).replace(/['"]+/g,
+                          '') %>
+                        </span>
+                      </div>
+                      <div class="col-sm-1 prod-actions">
+                        <div class="cart-item-actions d-flex">
+                          <a
+                            href="#"
+                            data-toggle="tooltip"
+                            data-html="true"
+                            data-original-title="Edit"
+                            title=""
+                            class="btn btn-icon btn-sm"
+                          >
+                            <i class="fa-solid fa-pen-to-square"></i>
+                          </a>
+                          <button
+                            type="button"
+                            class="btn btn-icon btn-sm"
+                            data-toggle="tooltip"
+                            data-html="true"
+                            data-original-title="Error"
+                          >
+                            <!-- /removeCart/<%= JSON.stringify(item.item.id_product).replace(/['"]+/g,'') %> -->
+                            <a href="#"><i class="fa-solid fa-trash"></i></a>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <% }) %> <% } else { %>
+                  <!-- show session cart -->
+
+                  <h6 class="message-text">Giỏ hàng đang rỗng</h6>
+                  <!-- end -->
+                  <% } %>
+                  <div class="panel-footer d-flex space-between">
+                    <div class="content">
+                      <a href="#" class="btn btn-default btn-sm"
+                        ><i
+                          class="fa-solid fa-reply"
+                          style="margin-right: 6px"
+                        ></i
+                        >Tiếp tục mua hàng</a
+                      >
+                      <a
+                        data-toggle="modal"
+                        data-target="#estimate-taxes"
+                        class="btn btn-default btn-sm"
+                        href="#"
+                        ><i
+                          class="fa-solid fa-circle-info"
+                          style="margin-right: 6px"
+                        ></i
+                        >Cập Nhật</a
+                      >
+                    </div>
+
+                    <div class="content">
+                      <button
+                        type="button"
+                        class="btn btn-default btn-sm"
+                        id="btnEmptyCart"
+                      >
+                        <i
+                          class="fa-solid fa-trash"
+                          style="margin-right: 6px"
+                        ></i
+                        >Xóa
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="section">
+              <div class="section-header">
+                <h3>Khuyến mãi</h3>
+              </div>
+              <div class="section-body">
+                <div class="panel panel-default panel-form m-b-40">
+                  <div class="panel-body">
+                    <form method="post" action="cart.php?a=checkout">
+                      <div class="form-group promo-code">
+                        <input
+                          type="text"
+                          name="promocode"
+                          id="inputPromotionCode"
+                          class="form-control"
+                          placeholder="Nhập mã giảm giá dịch vụ (nếu có)"
+                          required="required"
+                        />
+                        <button
+                          type="submit"
+                          name="validatepromo"
+                          class="btn btn-primary"
+                          value="Áp dụng"
+                        >
+                          Áp dụng
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <form
+              method="post"
+              action="/cart.php?a=checkout"
+              name="orderfrm"
+              id="frmCheckout"
+            >
+              <input type="hidden" name="submit" value="true" />
+              <div class="section">
+                <div class="section-header">
+                  <h3>Chi tiết thanh toán</h3>
+                </div>
+                <div class="section-body">
+                  <div
+                    class="panel-group panel-group-condensed m-b-0 is-selected"
+                    data-inputs-container=""
+                  >
+                    <div
+                      class="panel panel-default checked"
+                      data-virtual-input=""
+                    >
+                      <div class="panel-heading check">
+                        <label class="">
+                          <div class="radio-styled checked">
+                            <input
+                              id="account2436"
+                              class="icheck-control account-select"
+                              type="radio"
+                              name="account_id"
+                              value="2436"
+                              checked="checked"
+                              style="
+                                position: absolute;
+                                top: -40%;
+                                left: -40%;
+                                display: block;
+                                width: 180%;
+                                height: 180%;
+                                margin: 0px;
+                                padding: 0px;
+                                background: rgb(255, 255, 255);
+                                border: 0px;
+                                opacity: 0;
+                              "
+                            /><ins
+                              class="iCheck-helper"
+                              style="
+                                position: absolute;
+                                top: -40%;
+                                left: -40%;
+                                display: block;
+                                width: 180%;
+                                height: 180%;
+                                margin: 0px;
+                                padding: 0px;
+                                background: rgb(255, 255, 255);
+                                border: 0px;
+                                opacity: 0;
+                              "
+                            ></ins>
+                          </div>
+                          <div class="check-content d-flex align-center">
+                            <span><%= huyit.username %></span>
+                            <div class="m-l-a label label-info">VND</div>
+                          </div>
+                        </label>
+                      </div>
+                      <div
+                        class="panel-collapse collapse in"
+                        data-input-collapse=""
+                        role="tabpanel"
+                      >
+                        <div class="panel-body">
+                          <address>
+                            <span class="address-item"
+                              ><%= huyit.email %>
+                            </span>
+                            <br />
+                            <span class="address-item"
+                              ><%= huyit.address %></span
+                            ><br />
+                            <span class="address-item">Viet Nam</span> <br />
+                            <span class="address-item"
+                              ><%= huyit.mobile %></span
+                            >
+                          </address>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="section">
+                <h3>Thông tin thêm</h3>
+                <textarea
+                  name="notes"
+                  class="form-control"
+                  rows="4"
+                  placeholder="Quý khách có thể điền thêm thông tin / yêu cầu về dịch vụ đang đăng ký cho chúng tôi..."
+                ></textarea>
+              </div>
+
+              <div class="section">
+                <div class="alert alert-warning checkout-security-msg">
+                  <div class="alert-body">
+                    <i class="ls ls-lock"></i>
+                    Để đảm bảo tính hợp pháp của đơn hàng này, địa chỉ IP của
+                    quý khách (<strong>171.225.184.230</strong>) sẽ được hệ
+                    thống lưu lại.
+                  </div>
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                id="submit-checkout"
+                class="hidden btn btn-primary btn-lg"
+              >
+                Đặt hàng thành công
+              </button>
+            </form>
+          </div>
+          <div class="order-sidebar" id="">
+            <div id="sticky-sidebar">
+              <div class="sticky-sidebar-inner">
+                <div class="order-summary" id="orderSummary">
+                  <div
+                    class="loader"
+                    id="orderSummaryLoader"
+                    style="display: none"
+                  >
+                    <div class="spinner spinner-sm spinner-light">
+                      <div class="rect1"></div>
+                      <div class="rect2"></div>
+                      <div class="rect3"></div>
+                      <div class="rect4"></div>
+                      <div class="rect5"></div>
+                    </div>
+                  </div>
+                  <h2>Thông tin đơn hàng</h2>
+                  <div class="summary-container">
+                    <div class="content">
+                      <ul class="order-summary-list">
+                        <li class="list-item" data-subtotal>
+                          <span class="item-name">Tổng tiền dịch vụ</span>
+                          <span class="item-value">0đ</span>
+                        </li>
+                      </ul>
+                      <ul class="order-summary-list faded">
+                        <li class="list-item">
+                          <span class="item-name">VAT @ 10.00%</span>
+                          <span class="item-value" id="taxTotal1">0</span>
+                        </li>
+                      </ul>
+                      <ul class="order-summary-list" id="recurring">
+                        <li class="list-item faded">Tổng tiền</li>
+                        <li
+                          class="list-item"
+                          id="recurringMonthly"
+                          style="display: none"
+                        >
+                          <span class="item-name">1 tháng</span>
+                          <span class="item-value"></span>
+                        </li>
+                        <li
+                          class="list-item"
+                          id="recurringQuarterly"
+                          style="display: none"
+                        ></li>
+                        <li
+                          class="list-item"
+                          id="recurringQuarterly"
+                          style="display: none"
+                        >
+                          <span class="item-name">3 tháng</span>
+                          <span class="item-value"></span>
+                        </li>
+                        <li
+                          class="list-item"
+                          id="recurringSemiAnnually"
+                          style="display: none"
+                        >
+                          <span class="item-name">6 tháng</span>
+                          <span class="item-value"></span>
+                        </li>
+                        <li
+                          class="list-item"
+                          id="recurringAnnually"
+                          style="display: none"
+                        >
+                          <span class="item-name">1 năm</span>
+                          <span class="item-value"></span>
+                        </li>
+                        <li
+                          class="list-item"
+                          id="recurringBiennially"
+                          style="display: none"
+                        >
+                          <span class="item-name">2 năm</span>
+                          <span class="item-value"></span>
+                        </li>
+                        <li
+                          class="list-item"
+                          id="recurringTriennially"
+                          style="display: none"
+                        >
+                          <span class="item-name">3 năm</span>
+                          <span class="item-value"></span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="total-due-today" data-total>
+                      <div class="content">
+                        <span id="totalDueToday" class="amt"
+                          ><%= totalPrice %></span
+                        >
+                        <span class="total-due-today-text"
+                          >Cộng tiền thanh toán</span
+                        >
+                      </div>
+                      <div class="basket-icon">
+                        <i class="fa-solid fa-share-nodes"></i>
+                      </div>
+                    </div>
+                    <form
+                      action="/order"
+                      method="post"
+                      class="order-summary-actions"
+                    >
+                      <button
+                        type="submit"
+                        class="btn btn btn-info btn-checkout"
+                        data-btn-loader
+                        id="checkout"
+                      >
+                        <span>
+                          <i
+                            class="fa-solid fa-share"
+                            style="margin-right: 10px"
+                          ></i
+                          >Thanh toán
+                        </span>
+                        <div class="loader loader-button hidden">
+                          <div class="spinner spinner-sm">
+                            <div class="rect1"></div>
+                            <div class="rect2"></div>
+                            <div class="rect3"></div>
+                            <div class="rect4"></div>
+                            <div class="rect5"></div>
+                          </div>
+                        </div>
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="order-summary order-summary-mob" id="orderSummary">
+          <div class="loader" id="orderSummaryLoaderMob" style="display: none">
+            <div class="spinner spinner-sm spinner-light">
+              <div class="rect1"></div>
+              <div class="rect2"></div>
+              <div class="rect3"></div>
+              <div class="rect4"></div>
+              <div class="rect5"></div>
+            </div>
+          </div>
+          <h2>Thông tin đơn hàng</h2>
+          <div class="summary-container">
+            <div class="content">
+              <ul class="order-summary-list">
+                <li class="list-item">
+                  <span class="item-name">Tổng tiền dịch vụ</span>
+                  <span class="item-value" id="subtotal">0</span>
+                </li>
+              </ul>
+              <ul class="order-summary-list faded">
+                <li class="list-item">
+                  <span class="item-name">VAT @ 10.00%</span>
+                  <span class="item-value" id="taxTotal1Mob">0</span>
+                </li>
+              </ul>
+              <ul class="order-summary-list" id="recurringMob">
+                <li class="list-item faded">Tổng tiền</li>
+                <li
+                  class="list-item"
+                  id="recurringMobMonthly"
+                  style="display: none"
+                >
+                  <span class="item-name">1 tháng</span>
+                  <span class="item-value"></span>
+                </li>
+                <li
+                  class="list-item"
+                  id="recurringMobQuarterly"
+                  style="display: none"
+                >
+                  <span class="item-name">3 tháng</span>
+                  <span class="item-value"></span>
+                </li>
+                <li
+                  class="list-item"
+                  id="recurringMobSemiAnnually"
+                  style="display: none"
+                >
+                  <span class="item-name">6 tháng</span>
+                  <span class="item-value"></span>
+                </li>
+                <li
+                  class="list-item"
+                  id="recurringMobAnnually"
+                  style="display: none"
+                >
+                  <span class="item-name">1 năm</span>
+                  <span class="item-value"></span>
+                </li>
+                <li
+                  class="list-item"
+                  id="recurringMobBiennially"
+                  style="display: none"
+                >
+                  <span class="item-name">2 năm</span>
+                  <span class="item-value"></span>
+                </li>
+                <li
+                  class="list-item"
+                  id="recurringMobTriennially"
+                  style="display: none"
+                >
+                  <span class="item-name">3 năm</span>
+                  <span class="item-value"></span>
+                </li>
+              </ul>
+            </div>
+            <div class="total-due-today">
+              <div class="content">
+                <span id="totalDueTodayMob" class="amt"><%= totalPrice %></span>
+                <span class="total-due-today-text">Cộng tiền thanh toán</span>
+              </div>
+              <button
+                type="button"
+                class="btn btn-icon btn-primary btn-rounded btn-sm"
+              >
+                <i class="fa fa-chevron-up"></i>
+              </button>
+            </div>
+            <form action="/order" method="post" class="order-summary-actions">
+              <button
+                type="submit"
+                class="btn btn btn-info btn-checkout disabled"
+                disabled
+                data-btn-loader
+                id="checkout2"
+              >
+                <span>
+                  <i class="fa-solid fa-share" style="margin-right: 10px"></i
+                  >Thanh toán
+                </span>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+
+  <%- include('lib/footer.ejs') %>
+

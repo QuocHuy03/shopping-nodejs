@@ -1,0 +1,206 @@
+<%- include('_layout/header.ejs') %>
+<%- include('_layout/nav.ejs') %>
+
+<div class="row mb-2">
+	<div class="col-sm-12">
+		<br>
+
+	</div><!-- /.col -->
+</div><!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Dashboard</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <button class="btn btn-primary" type="button" data-toggle="modal"
+                            data-target="#modal-default">ShopCode</button>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            Phiên bản hiện tại: 2030 (Phiên bản cuối cùng của HuyDev)
+        </br>Nhằm tăng cường bảo mật, HuyDev khuyên bạn nên thường xuyên thay đổi mật khẩu Admin 7 ngày 1 lần và mật khẩu phải thật phức tạp.
+        </div>
+        
+      
+        <div class="row">
+            <div class="col-6 col-md-4 text-center">
+                
+
+                <div class="knob-label"></div>
+            </div>
+            <div class="col-6 col-md-4 text-center">
+                
+
+                <div class="knob-label"></div>
+            </div>
+            <div class="col-6 col-md-4 text-center">
+                
+
+                <div class="knob-label"></div>
+            </div>
+            <section class="col-lg-12 connectedSortable pt-5">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-3">
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3 id="total_users">1</h3>
+                                <p>Tổng thành viên</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3">
+                        <div class="small-box bg-warning">
+                            <div class="inner">
+                                <h3 id="total_money">
+                                    1
+                                </h3>
+                                <p>Tổng số dư thành viên</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-money-bill-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3">
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                <h3 id="total_accounts">
+                                    2
+                                </h3>
+                                <p>Đơn Hàng</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-store"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3">
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                <h3 id="total_sold">
+                                    3
+                                </h3>
+                                <p>Sản Phẩm</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+       
+
+         
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box">
+                    <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-money-check-alt"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Tổng tiền nạp trong tháng</span>
+                        <span class="info-box-number">
+                            3
+                            <small>đ</small>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box">
+                    <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Thành viên đăng ký trong tuần</span>
+                        <span class="info-box-number">
+                            <?= $dangkytrongtuan ;?>
+                            <small>user</small>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box">
+                    <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-money-check-alt"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Tổng tiền nạp trong tuần</span>
+                        <span class="info-box-number">
+                            1
+                            <small>đ</small>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box">
+                    <span class="info-box-icon bg-info elevation-1"><i class="fas fa-money-check-alt"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Doanh thu bán tài khoản hôm nay</span>
+                        <span class="info-box-number"><b id="doanh_thu_ban_tai_khoan_hom_nay">
+                               1
+                            </b> <small>đ</small>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box">
+                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-shopping-basket"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Tài khoản đã bán hôm nay</span>
+                        <span class="info-box-number"><b id="tai_khoan_da_ban_hom_nay">1
+                            </b> <small>nick</small>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box">
+                    <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Thành viên đăng ký hôm nay</span>
+                        <span class="info-box-number">
+                            <b id="thanh_vien_dang_ky_hom_nay">1
+                            </b><small>user</small>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box">
+                    <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-money-check-alt"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Tổng tiền nạp hôm nay</span>
+                        <span class="info-box-number">
+                            <b id="tong_tien_nap_hom_nay">1</b>
+                            <small>đ</small>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            </div>
+<script>
+	$(function() {
+		$("#datatable2").DataTable({
+			"responsive": false,
+			"autoWidth": false,
+		});
+	});
+</script>
+<%- include('_layout/footer.ejs') %>

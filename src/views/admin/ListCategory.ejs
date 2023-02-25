@@ -1,0 +1,71 @@
+<%- include('_layout/header.ejs') %>
+<%- include('_layout/nav.ejs') %>
+
+<div class="row mb-2">
+    <div class="col-sm-6">
+    </div><!-- /.col -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">NHÓM SẢN PHẨM</h3>
+               
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="datatable1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr class="text-center">
+                                <th style="width:10px">STT</th>
+                                <th>Tên Danh Mục</th>
+                                <th>Sửa</th>
+                                <th>Xóa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i=0; i < dataCategory.length; i++) { %>
+                                <tr>
+                                    <td class="text-center">
+                                     <%= dataCategory[i].id %>
+                                    </td>
+
+                                     <td class="text-center">
+                                        <%= dataCategory[i].name_cate %>
+                                    </td>
+                                    
+                                    <td class="text-center">
+                                        <form action="/admin/edit-category/<%= dataCategory[i].id %>" method="get">
+                                            <button class="btn btn-info" type="submit" style="color: #fff">
+                                              Edit
+                                            </button>
+                                          </form>
+                                    </td>
+                                    <td class="text-center">
+                                        <form action="/delete-category" method="post">
+                                            <input type="hidden" value="<%= dataCategory[i].id %>" name="id" />
+                                            <button class="btn btn-success" type="submit" style="color: #fff">
+                                              Delete
+                                            </button>
+                                          </form>
+                                    </td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer clearfix">
+                VUI LÒNG THAO TÁC CẨN THẬN
+            </div>
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+</div>
+<!-- /.row huydeV -->
+
+<%- include('_layout/footer.ejs') %>
